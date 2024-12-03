@@ -1,12 +1,15 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { RouterProvider } from 'react-router-dom'
+import { QueryClientProvider } from './modules/query-client'
 import { router } from './routes/router'
 
 import './index.css'
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
-        <RouterProvider router={router} />
+        <QueryClientProvider>
+            <RouterProvider router={router} />
+        </QueryClientProvider>
     </StrictMode>
 )

@@ -28,7 +28,8 @@
     "import/extensions": "off",
     "no-console": "warn",
     "no-useless-return": "warn",
-    "@typescript-eslint/no-explicit-any": "warn"
+    "@typescript-eslint/no-explicit-any": "warn",
+    "@typescript-eslint/naming-convention": "warn"
   },
   "parser": "@typescript-eslint/parser",
   "parserOptions": {

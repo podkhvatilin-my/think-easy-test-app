@@ -1,12 +1,40 @@
 import { useCallback } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useAuthControllerSignup } from '@/api/posts'
+import { AuthService } from '@/modules/auth'
 import { SignUpForm } from './components'
 
 import type { SignUpFormData } from './components'
 
 export const SignupPage = () => {
-    const handleSubmit = useCallback<(data: SignUpFormData) => void>((data) => {
-        console.log(data)
-    }, [])
+    const navigate = useNavigate()
+    const { mutate } = useAuthControllerSignup({
+        mutation: {
+            onSuccess: ({ data }) => {
+                const { accessToken, refreshToken } = data
+                const authService = AuthService.getInstance()
+
+                authService.setAuthData({ accessToken, refreshToken })
+                navigate('/posts')
+            },
+        },
+    })
+
+    const handleSubmit = useCallback<(data: SignUpFormData) => void>(
+        (data) => {
+            const { firstname, lastname, email, password } = data
+
+            mutate({
+                data: {
+                    firstname,
+                    lastname,
+                    email,
+                    password,
+                },
+            })
+        },
+        [mutate]
+    )
 
     return (
         <section className="flex flex-col items-center justify-center h-dvh bg-gray-50">
