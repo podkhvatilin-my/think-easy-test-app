@@ -1,7 +1,3 @@
-export function PostsPage() {
-	return (
-		<div>
-			Posts Page
-		</div>
-	)
+export const PostsPage = () => {
+    return <div>Posts Page</div>
 }

@@ -1,0 +1,11 @@
+.awcache
+node_modules
+npm-debug.log
+.DS_Store
+build
+*.swp
+.idea*
+.vscode*
+.vs
+playwright-report
+*.md

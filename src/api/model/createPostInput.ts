@@ -7,6 +7,6 @@
  */
 
 export interface CreatePostInput {
-  content: string;
-  title: string;
+    content: string
+    title: string
 }

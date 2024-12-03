@@ -7,5 +7,5 @@
  */
 
 export interface RefreshResponceModel {
-  access_token: string;
+    access_token: string
 }

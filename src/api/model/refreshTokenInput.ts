@@ -7,5 +7,5 @@
  */
 
 export interface RefreshTokenInput {
-  token: string;
+    token: string
 }

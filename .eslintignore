@@ -1,0 +1,8 @@
+node_modules
+dist
+public
+vite.config.ts
+orval.config.js
+postcss.config.js
+tailwind.config.js
+src/vite-env.d.ts

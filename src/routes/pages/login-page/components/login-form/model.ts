@@ -1,8 +1,8 @@
 export interface LoginFormData {
-	email: string
-	password: string
+    email: string
+    password: string
 }
 
 export interface LoginFormProps {
-	onSubmit: (data: LoginFormData) => void
+    onSubmit: (data: LoginFormData) => void
 }

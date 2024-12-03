@@ -7,11 +7,11 @@
  */
 
 export interface PostResponse {
-  authorId: string;
-  content: string;
-  createdAt: string;
-  id: string;
-  published: boolean;
-  title: string;
-  updatedAt: string;
+    authorId: string
+    content: string
+    createdAt: string
+    id: string
+    published: boolean
+    title: string
+    updatedAt: string
 }
