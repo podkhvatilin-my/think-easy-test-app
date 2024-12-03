@@ -1,8 +1,9 @@
+import { forwardRef } from 'react'
 import clsx from "clsx";
 
 import type { ButtonProps } from './model'
 
-export function Button(props: ButtonProps) {
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
 	const {
 		children,
 		variant = 'primary',
@@ -12,6 +13,7 @@ export function Button(props: ButtonProps) {
 
 	return (
 		<button
+			ref={ref}
 			type={type}
 			{...restProps}
 			className={clsx('px-3 py-2 font-medium border-2 rounded-md transition-colors ease-out select-none', {
@@ -25,4 +27,6 @@ export function Button(props: ButtonProps) {
 			{children}
 		</button>
 	)
-}
+})
+
+Button.displayName = 'Button'

@@ -1,32 +1,22 @@
-import { Button, Input } from '../../../components/ui'
+import { useCallback } from 'react'
+import { LoginForm } from './components'
+
+import type { LoginFormData } from './components'
 
 export function LoginPage() {
-	return (
-		<>
-			<div className="flex gap-1 p-2">
-				<h2 className="mr-5">Buttons</h2>
-				<Button>
-					Primary
-				</Button>
-				<Button variant="secondary">
-					Secondary
-				</Button>
-				<Button variant="success">
-					Success
-				</Button>
-				<Button variant="warning">
-					Warning
-				</Button>
-				<Button variant="danger">
-					Danger
-				</Button>
-			</div>
+	const handleSubmit = useCallback<(data: LoginFormData) => void>((data) => {
+		console.log(data)
+	}, [])
 
-			<div className="flex flex-col gap-1 p-2">
-				<h2 className="mr-5">Inputs</h2>
-				<Input placeholder="Name"/>
-				<Input label="Name" placeholder="Name"/>
+	return (
+		<section className="flex flex-col items-center justify-center h-dvh bg-gray-50">
+			<div className="p-6 w-full bg-white rounded-lg shadow sm:max-w-md">
+				<h1 className="mb-5 text-xl font-bold leading-tight tracking-tight text-gray-900">
+					Login to your account
+				</h1>
+				<LoginForm onSubmit={handleSubmit}/>
 			</div>
-		</>
+		</section>
+
 	)
 }
