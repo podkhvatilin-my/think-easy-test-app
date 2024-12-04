@@ -1,6 +1,5 @@
 import { createBrowserRouter, redirect } from 'react-router-dom'
-import { AuthGuard } from '@/modules/auth'
-
+import { guestGuardLoader, authGuardLoader } from './guards'
 import { LoginPage } from './pages/login-page'
 import { SignupPage } from './pages/signup-page'
 import { PostsPage } from './pages/posts-page'
@@ -13,14 +12,17 @@ export const router = createBrowserRouter([
             {
                 path: 'login',
                 element: <LoginPage />,
+                loader: guestGuardLoader,
             },
             {
                 path: 'signup',
                 element: <SignupPage />,
+                loader: guestGuardLoader,
             },
             {
                 path: 'posts',
-                element: <AuthGuard Component={PostsPage} />,
+                element: <PostsPage />,
+                loader: authGuardLoader,
             },
             {
                 path: '*',

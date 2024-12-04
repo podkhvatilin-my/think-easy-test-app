@@ -3,7 +3,7 @@ import type { AuthData } from './model'
 export class AuthService {
     static instance: AuthService
 
-    private STORAGE_AUTH_KEY: string
+    private readonly STORAGE_AUTH_KEY: string
 
     constructor() {
         this.STORAGE_AUTH_KEY = 'auth_data'

@@ -27,7 +27,7 @@ export const SignUpForm = (props: SignUpFormProps) => {
                 render={({ field }) => (
                     <Input
                         label="First name"
-                        placeholder="First name"
+                        placeholder="Bonnie"
                         errorMessage={formState.errors.firstname?.message}
                         {...field}
                     />
@@ -39,7 +39,7 @@ export const SignUpForm = (props: SignUpFormProps) => {
                 render={({ field }) => (
                     <Input
                         label="Last name"
-                        placeholder="Last name"
+                        placeholder="Green"
                         errorMessage={formState.errors.lastname?.message}
                         {...field}
                     />
@@ -50,8 +50,9 @@ export const SignUpForm = (props: SignUpFormProps) => {
                 control={control}
                 render={({ field }) => (
                     <Input
-                        label="Email"
-                        placeholder="Email"
+                        type="email"
+                        label="Your email"
+                        placeholder="name@company.com"
                         errorMessage={formState.errors.email?.message}
                         {...field}
                     />
@@ -62,8 +63,9 @@ export const SignUpForm = (props: SignUpFormProps) => {
                 control={control}
                 render={({ field }) => (
                     <Input
+                        type="password"
                         label="Password"
-                        placeholder="Password"
+                        placeholder="••••••••"
                         errorMessage={formState.errors.password?.message}
                         {...field}
                     />
@@ -74,14 +76,15 @@ export const SignUpForm = (props: SignUpFormProps) => {
                 control={control}
                 render={({ field }) => (
                     <Input
+                        type="password"
                         label="Confirm password"
-                        placeholder="Confirm password"
+                        placeholder="••••••••"
                         errorMessage={formState.errors.confirmPassword?.message}
                         {...field}
                     />
                 )}
             />
-            <Button type="submit">Login</Button>
+            <Button type="submit">Create an account</Button>
         </form>
     )
 }

@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { useAuthControllerLogin } from '@/api/posts'
 import { AuthService } from '@/modules/auth'
 import { LoginForm } from './components'
@@ -34,6 +34,12 @@ export const LoginPage = () => {
                     Welcome back
                 </h1>
                 <LoginForm onSubmit={handleSubmit} />
+                <p className="mt-3 text-sm font-light text-gray-500">
+                    Don’t have an account yet?{' '}
+                    <Link to="/signup" className="font-medium text-blue-600 hover:underline">
+                        Sign up
+                    </Link>
+                </p>
             </div>
         </section>
     )

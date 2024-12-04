@@ -23,8 +23,9 @@ export const LoginForm = (props: LoginFormProps) => {
                 control={control}
                 render={({ field }) => (
                     <Input
-                        label="Email"
-                        placeholder="Email"
+                        type="email"
+                        label="Your email"
+                        placeholder="name@company.com"
                         errorMessage={formState.errors.email?.message}
                         {...field}
                     />
@@ -35,8 +36,9 @@ export const LoginForm = (props: LoginFormProps) => {
                 control={control}
                 render={({ field }) => (
                     <Input
+                        type="password"
                         label="Password"
-                        placeholder="Password"
+                        placeholder="••••••••"
                         errorMessage={formState.errors.password?.message}
                         {...field}
                     />
