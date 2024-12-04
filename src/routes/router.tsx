@@ -3,6 +3,7 @@ import { guestGuardLoader, authGuardLoader } from './guards'
 import { LoginPage } from './pages/login-page'
 import { SignupPage } from './pages/signup-page'
 import { PostsPage } from './pages/posts-page'
+import { PostPage } from './pages/post-page'
 
 export const router = createBrowserRouter([
     {
@@ -22,6 +23,11 @@ export const router = createBrowserRouter([
             {
                 path: 'posts',
                 element: <PostsPage />,
+                loader: authGuardLoader,
+            },
+            {
+                path: 'posts/:postId',
+                element: <PostPage />,
                 loader: authGuardLoader,
             },
             {
