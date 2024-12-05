@@ -24,6 +24,7 @@
         "unnamedComponents": "arrow-function"
       }
     ],
+    "react-hooks/exhaustive-deps": "warn",
     "import/prefer-default-export": "off",
     "import/extensions": "off",
     "no-console": "warn",

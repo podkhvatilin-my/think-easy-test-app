@@ -1,3 +1,3 @@
 export const POSTS_PAGE_CONFIG = {
-    pageSize: 10,
+    pageSize: 20,
 }

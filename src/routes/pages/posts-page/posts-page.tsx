@@ -1,13 +1,14 @@
 import { useState, useMemo, useCallback } from 'react'
+
 import { usePostsControllerGetAllPosts } from '@/api/posts'
-import { Button } from '@/components/ui'
 import { POSTS_PAGE_CONFIG } from './config'
-import { PostCard } from './components'
+import { PostCard, Pagination } from './components'
 
 export const PostsPage = () => {
+    const [pageIdx, setPageIdx] = useState(0)
+
     const { data, isLoading } = usePostsControllerGetAllPosts()
 
-    const [pageIdx, setPageIdx] = useState(0)
     const posts = useMemo(() => {
         if (data?.data) {
             const startIdx = pageIdx * POSTS_PAGE_CONFIG.pageSize
@@ -19,31 +20,35 @@ export const PostsPage = () => {
         return []
     }, [data, pageIdx])
 
-    const handleNextPageClick = useCallback(() => {
-        setPageIdx((prevState) => prevState + 1)
-    }, [])
-    const handlePrevPageClick = useCallback(() => {
-        setPageIdx((prevState) => (prevState !== 0 ? prevState - 1 : prevState))
+    const handlePageChange = useCallback<(page: number) => void>((page) => {
+        setPageIdx(page - 1)
+        window.scrollTo({ top: 0, behavior: 'smooth' })
     }, [])
 
     return (
         <section className="flex flex-col items-center py-4 min-h-dvh bg-gray-50">
-            {!isLoading ? (
-                <ul className="flex flex-col gap-3 w-2/3">
-                    {posts.map((post) => (
-                        <li key={post.id}>
-                            <PostCard post={post} />
-                        </li>
-                    ))}
-                </ul>
-            ) : (
+            {isLoading ? (
                 <div>Loading...</div>
+            ) : (
+                <>
+                    <ul className="flex flex-col gap-3 w-2/3">
+                        {posts.map((post) => (
+                            <li key={post.id}>
+                                <PostCard post={post} />
+                            </li>
+                        ))}
+                    </ul>
+                    <br />
+                    <footer className="flex gap-2">
+                        <Pagination
+                            page={pageIdx + 1}
+                            pageSize={POSTS_PAGE_CONFIG.pageSize}
+                            itemsSize={data?.data.length ?? 0}
+                            onPageChange={handlePageChange}
+                        />
+                    </footer>
+                </>
             )}
-            <br />
-            <footer className="flex gap-2">
-                <Button onClick={handlePrevPageClick}>Prev page</Button>
-                <Button onClick={handleNextPageClick}>Next page</Button>
-            </footer>
         </section>
     )
 }
