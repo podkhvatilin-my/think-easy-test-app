@@ -26,9 +26,19 @@ export const PostsPage = () => {
     }, [])
 
     return (
-        <section className="flex flex-col items-center py-4 min-h-dvh bg-gray-50">
+        <section className="flex flex-col items-center pt-12 pb-4 min-h-dvh bg-gray-50">
+            <header className="fixed z-20 top-0 start-0 flex justify-end items-center w-full h-10 bg-white border-b border-gray-200">
+                <p>Add post</p>
+                <p>Log Out</p>
+            </header>
             {isLoading ? (
-                <div>Loading...</div>
+                <ul className="flex flex-col gap-3 w-2/3 animate-pulse">
+                    {[...Array.from({ length: POSTS_PAGE_CONFIG.pageSize }, (_, i) => i)].map((key) => (
+                        <li key={key}>
+                            <div className="h-[174px] bg-gray-200 rounded-lg w-full mb-2.5" />
+                        </li>
+                    ))}
+                </ul>
             ) : (
                 <>
                     <ul className="flex flex-col gap-3 w-2/3">
