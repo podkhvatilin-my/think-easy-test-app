@@ -1,21 +1,24 @@
 import { useState, useMemo, useCallback } from 'react'
-import { usePostsControllerGetAllPosts } from '@/api/posts'
-import { PostCard, PostCardSkeleton, Pagination } from '@/components'
-import { POSTS_PAGE_CONFIG } from './config'
+import { useParams } from 'react-router-dom'
+import { usePostsControllerUserPosts } from '@/api/posts'
+import { USER_POSTS_PAGE_CONFIG } from './config'
+import { Pagination, PostCard, PostCardSkeleton } from '@/components'
 
-export const PostsPage = () => {
+export const UserPosts = () => {
+    const routeParams = useParams()
+
     const [pageIdx, setPageIdx] = useState(0)
 
-    const { data, isLoading } = usePostsControllerGetAllPosts()
+    const { data, isLoading } = usePostsControllerUserPosts(routeParams.authorId as string)
 
-    const posts = useMemo(() => {
-        const postsData = [...(data?.data ?? [])].reverse()
+    const userPosts = useMemo(() => {
+        const userPostsData = [...(data?.data ?? [])].reverse()
 
-        if (postsData.length) {
-            const startIdx = pageIdx * POSTS_PAGE_CONFIG.pageSize
-            const endIdx = startIdx + POSTS_PAGE_CONFIG.pageSize - 1
+        if (userPostsData.length) {
+            const startIdx = pageIdx * USER_POSTS_PAGE_CONFIG.pageSize
+            const endIdx = startIdx + USER_POSTS_PAGE_CONFIG.pageSize - 1
 
-            return postsData.slice(startIdx, endIdx)
+            return userPostsData.slice(startIdx, endIdx)
         }
 
         return []
@@ -28,7 +31,7 @@ export const PostsPage = () => {
 
     return isLoading ? (
         <ul className="flex flex-col gap-3 w-10/12 sm:w-2/3 animate-pulse">
-            {[...Array.from({ length: POSTS_PAGE_CONFIG.pageSize }, (_, i) => i)].map((key) => (
+            {[...Array.from({ length: USER_POSTS_PAGE_CONFIG.pageSize }, (_, i) => i)].map((key) => (
                 <li key={key}>
                     <PostCardSkeleton />
                 </li>
@@ -37,7 +40,7 @@ export const PostsPage = () => {
     ) : (
         <>
             <ul className="flex flex-col gap-3 w-10/12 sm:w-2/3">
-                {posts.map((post) => (
+                {userPosts.map((post) => (
                     <li key={post.id}>
                         <PostCard post={post} />
                     </li>
@@ -47,7 +50,7 @@ export const PostsPage = () => {
             <footer className="flex gap-2">
                 <Pagination
                     page={pageIdx + 1}
-                    pageSize={POSTS_PAGE_CONFIG.pageSize}
+                    pageSize={USER_POSTS_PAGE_CONFIG.pageSize}
                     itemsSize={data?.data.length ?? 0}
                     onPageChange={handlePageChange}
                 />

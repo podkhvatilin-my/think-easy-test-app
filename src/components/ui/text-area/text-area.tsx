@@ -1,10 +1,10 @@
 import { forwardRef, useId } from 'react'
 import clsx from 'clsx'
 
-import type { InputProps } from './model'
+import type { TextAreaProps } from './model'
 
-export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
-    const { label, errorMessage, type = 'text', ...restProps } = props
+export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>((props, ref) => {
+    const { label, errorMessage, ...restProps } = props
 
     const id = useId()
 
@@ -15,11 +15,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
                     {label}
                 </label>
             )}
-            <input
+            <textarea
                 {...restProps}
                 ref={ref}
-                type={type}
                 id={id}
+                rows={4}
                 className={clsx(
                     'px-3 py-2 text-black border rounded-md focus:outline-2 focus:outline-offset-2 focus:outline-blue-600',
                     {
@@ -32,4 +32,4 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     )
 })
 
-Input.displayName = 'Input'
+TextArea.displayName = 'Textarea'

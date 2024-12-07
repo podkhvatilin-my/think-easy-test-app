@@ -10,6 +10,12 @@ export const PostCard: FC<PostCardProps> = (props) => {
     return (
         <article className="block p-6 bg-white border border-gray-200 rounded-lg shadow">
             <time className="block text-sm leading-6 text-slate-500">{formatPostDate(post.createdAt)}</time>
+            <Link
+                to={`/posts/user/${post.authorId}`}
+                className="inline-flex items-center font-medium text-blue-500 hover:text-blue-600"
+            >
+                Author: {post.authorId}
+            </Link>
             <h5 className="mt-2 text-lg font-semibold text-slate-900">{post.title}</h5>
             <p className="line-clamp-3 mt-4 text-sm leading-6 text-slate-500">{post.content}</p>
             <Link
